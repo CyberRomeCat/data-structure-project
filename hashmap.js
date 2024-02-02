@@ -6,55 +6,63 @@ class Node {
 }
 
 function HashMap() {
-    let list = [];
+    let allBuckets = [];
     for(let i = 0; i < 15; i++) {
         let b;
-        list.push(b);
+        allBuckets.push(b);
     }  
 
     const hash = (key) => {
         let hashCode = 0;
+
+        const primeNumber = 31;
         for (let i = 0; i < key.length; i++) {
-          hashCode += key.charCodeAt(i);
+            hashCode = primeNumber * hashCode + key.charCodeAt(i);
         }
-      
-       return hashCode % 16;
+
+        return hashCode % 16;
     }
 
-    const loadFactor = () => {
+    const resize = () => {
        let bucketFull = 0;
-       let loadFactor = .75 * list.length + 1
-       for(let i = 0; i < list.length; i++) {
-            if (list[i] !== undefined) {
+       let loadFactor = .75 * allBuckets.length + 1
+       for(let i = 0; i < allBuckets.length; i++) {
+            if (allBuckets[i] !== undefined) {
                bucketFull += 1;
             }
         }
         if (bucketFull >= loadFactor) {
             for(let i = 0; i < 16; i++) {
                 let b;
-                list.push(b);
+                allBuckets.push(b);
             }  
         }
     }
 
     const set = (key, value) => {
-       for(let i = 0; i < list.length; i++) {
-            if (list[i] == undefined) {
-                list[i] = new Node(key, value)
+        if (key < 0 || key >= allBuckets.length) {
+            throw new Error("Trying to access index out of bound");
+        }
+       for(let i = 0; i < allBuckets.length; i++) {
+            if (allBuckets[i] == undefined) {
+                allBuckets[i] = new Node(key, value)
                 break;
             }
         }
-        loadFactor();
+        resize();
     }
 
     const get = (key) => {
-        return list[hash(key) - 1].value;
+        if (allBuckets[key == null]) {
+            return null;
+        }
+        return allBuckets[hash(key)-1].value;
     }
 
     const has = (keyt) => {
-        for(let i = 0; i < list.length; i++) {
-            if (list[i] !== undefined) {
-                if (list[i].key === keyt) {
+        for(let i = 0; i < allBuckets.length; i++) {
+            if (allBuckets[i] !== undefined) {
+                if (allBuckets[i].key === keyt) {
                     return true;
                 } 
             }
@@ -63,10 +71,10 @@ function HashMap() {
     }
 
     const remove = (key) => {
-        for(let i = 0; i < list.length; i++) {
-            if (list[i] !== undefined) {
-                if (list[i].key === key) {
-                    list[i] = undefined;
+        for(let i = 0; i < allBuckets.length; i++) {
+            if (allBuckets[i] !== undefined) {
+                if (allBuckets[i].key === key) {
+                    allBuckets[i] = undefined;
                     return true;
                 }
             }
@@ -76,7 +84,7 @@ function HashMap() {
 
     const length = () => {
         let keys = 0;
-        list.forEach(b => {
+        allBuckets.forEach(b => {
             if(b != undefined) {
                 keys += 1;
             }
@@ -85,15 +93,15 @@ function HashMap() {
     }
 
     const clear = () => {
-        list.forEach(b => {
+        allBuckets.forEach(b => {
           b = undefined;
         })
-        console.log(list);
+        console.log(allBuckets);
     }
 
     const keys = () => {
         let allkeys = [];
-        list.forEach(b => {
+        allBuckets.forEach(b => {
             if(b != undefined) {
                allkeys.push(b.key);
             }
@@ -103,7 +111,7 @@ function HashMap() {
 
     const values = () => {
         let allValues = [];
-        list.forEach(b => {
+        allBuckets.forEach(b => {
             if(b != undefined) {
                allValues.push(b.value);
             }
@@ -113,7 +121,7 @@ function HashMap() {
 
     const entries = () => {
         let keyValue = [];
-        list.forEach(b => {
+        allBuckets.forEach(b => {
             if(b != undefined) {
                keyValue.push([b.key, b.value])
             }
