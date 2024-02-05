@@ -124,5 +124,3 @@ list.prepend('string');
 list.prepend('love');
 list.prepend('awesome')
 list.toString();
-
-export { LinkedList }
