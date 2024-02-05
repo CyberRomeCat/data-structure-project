@@ -23,6 +23,7 @@ class LinkedList {
             this.tail = new node(value);
         }  else {
             this.tail = new node(value);
+            this.head.next = new node(value);
         }
     }
 
