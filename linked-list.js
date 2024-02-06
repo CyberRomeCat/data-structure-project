@@ -69,8 +69,7 @@ class LinkedList {
         let node = this.head;
         while (this.head != null) {
             if (node.value.key == value || node.value == value) {
-                console.log(true);
-                break;
+               return true;
             } 
 
             if (node.next == null) {
