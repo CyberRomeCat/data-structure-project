@@ -56,7 +56,7 @@ class LinkedList {
     pop() {
        let node = this.head;
        while (this.head != null) {
-        if (node.next.value === this.tail.value) {
+        if (node.next.value === this.tail.value || node.next.value.key == this.tail.value.key) {
             node.next = null;
             this.tail = node;
             break;
@@ -68,7 +68,7 @@ class LinkedList {
     contains(value) {
         let node = this.head;
         while (this.head != null) {
-            if (node.value == value) {
+            if (node.value.key == value || node.value == value) {
                 console.log(true);
                 break;
             } 
@@ -84,7 +84,7 @@ class LinkedList {
         let index = 0;
         let node = this.head;
         while (this.head != null) {
-            if (node.value == value) {
+            if (node.value.key == value || node.value == value) {
                 console.log(index);
                 break;
             } 
@@ -110,6 +110,18 @@ class LinkedList {
             string += ' -> '+ node.value
         }
     }
+
+    ///Only if there is a key
+    changeValue(key, value) {
+        let node = this.head;
+        while (this.head != null) {
+            if (node.value.key == key) {
+                node.value.value = value;
+                break;
+            }
+            node = node.next;
+        }
+    }
 }
 
 class node {
@@ -120,7 +132,3 @@ class node {
 }
 
 let list = new LinkedList;
-list.prepend('string');
-list.prepend('love');
-list.prepend('awesome')
-list.toString();
