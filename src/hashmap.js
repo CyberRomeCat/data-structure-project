@@ -188,7 +188,7 @@ function hashmap() {
         return allKeyValue;
     }
 
-    return {set, get, has, remove, length, clear, keys, values, entries}
+    return {set, get, has, remove, length, clear, keys, values, entries, allBuckets}
 }
 
 let test = hashmap();
