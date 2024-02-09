@@ -43,3 +43,5 @@ function mergeSort(arr) {
         return merge(leftHalf,rightHalf);
     }
 }
+
+export default mergeSort
