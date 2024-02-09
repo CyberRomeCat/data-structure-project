@@ -205,3 +205,5 @@ test.set('j','joll');
 test.set('k','koll');
 test.set('l','loll');
 test.set('m','aoll');
+
+export { hashmap }
