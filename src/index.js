@@ -42,10 +42,4 @@ root = insertNode(root, 20);
 root = insertNode(root, 40);
 root = insertNode(root, 70);
 root = insertNode(root, 60);
-inorder(root);
-console.log(root);
 prettyPrint(root);
-deleteNode(root,50);
-prettyPrint(root)
-find(root,30)
-
