@@ -56,18 +56,19 @@ function inorder(root) {
 }
    
 
-function insertNode(node, key) {
-    if (node === null) {
-        return new Node(key);
+function insertNode(root, value) {
+    if (root === null) {
+        return new Node(value);
     }
 
-    if (key < node.data) {
-        node.left = insertNode(node.left, key);
+    if (value < root.data) {
+        root.left = insertNode(root.left, value);
     } else {
-        node.right = insertNode(node.right, key);
+        root.right = insertNode(root.right, value);
     }
 
-    return node;
+    console.log(root);
+    return root;
 }
    
 function deleteNode(root, k) {
@@ -117,20 +118,39 @@ function deleteNode(root, k) {
 
 function find(root, value) {
     if (root === null) {
-        console.log(root)
+        console.log(root);
         return root;
-    } 
+    }
     if (root.data == value) {
         console.log(root);
         return root;
     }
 
     if (value < root.data) {
-        root.left = find(root.left, value);
+        return root.left = find(root.left, value);
     } else {
-        root.right = find(root.right, value);
+        return root.right = find(root.right, value);
+    }
+}
+
+function levelOrder(root,callback) {
+    if (root === null) return root;
+    let q = [root];
+    let values = [];
+    while(q.length > 0) {
+        let currentNode = q[0];
+        console.log(q[0]);
+        values.push(currentNode.data);
+        if(typeof callback === 'function') callback(currentNode);
+        if(currentNode.left != null) q.push(currentNode.left);
+        if(currentNode.right != null) q.push(currentNode.right);
+        q.shift();
+    }
+    if(typeof callback != 'function') {
+        console.log(values);
+        return values;
     }
 }
 
 
-export { buildTree, deleteNode, insertNode, find, inorder }
+export { buildTree, deleteNode, insertNode, find, inorder, levelOrder }
