@@ -34,4 +34,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
     }
   };
 
-  prettyPrint(tree.makeBST(0,n))
+  prettyPrint(tree.makeBST(0,n));
+
+  console.log('working')
