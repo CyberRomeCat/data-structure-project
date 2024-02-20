@@ -47,15 +47,6 @@ function buildTree(arr) {
     return { makeBST, sortedArr, cleanArr }
 }
 
-function inorder(root) {
-    if (root !== null) {
-      inorder(root.left);
-      console.log(root.data);
-      inorder(root.right);
-    }
-}
-   
-
 function insertNode(root, value) {
     if (root === null) {
         return new Node(value);
@@ -152,5 +143,65 @@ function levelOrder(root,callback) {
     }
 }
 
+function readRoot(root, values, callback) {
+    if(typeof callback != 'function') values.push(root.data);
+    if(typeof callback == 'function') callback(root);
+    if(typeof callback != 'function') return values;
+}
 
-export { buildTree, deleteNode, insertNode, find, inorder, levelOrder }
+function inOrder(root, callback) {
+    if (root == null) return root;
+    if(typeof callback != 'function') {
+        let values = [];
+
+        values = values.concat(inOrder(root.left));
+        values.push(root.data);
+        values = values.concat(inOrder(root.right));
+
+        let filterValues = values.filter(v => v != null);
+        return filterValues;
+    }
+
+    inOrder(root.left);
+    callback(root);
+    inOrder(root.right);
+}
+
+function preOrder(root, callback) {
+    if (root == null) return root;
+    if(typeof callback != 'function') {
+        let values = [];
+
+        values.push(root.data);
+        values = values.concat(preOrder(root.left));
+        values = values.concat(preOrder(root.right));
+
+        let filterValues = values.filter(v => v != null);
+        return filterValues;
+    }
+
+    callback(root);
+    preOrder(root.left);
+    preOrder(root.right);
+}
+
+function postOrder(root, callback) {
+    if (root == null) return root;
+    if(typeof callback != 'function') {
+        let values = [];
+
+        values = values.concat(postOrder(root.left));
+        values = values.concat(postOrder(root.right));
+        values.push(root.data);
+
+        let filterValues = values.filter(v => v != null);
+        return filterValues;
+    }
+
+    postOrder(root.left);
+    postOrder(root.right);
+    callback(root);
+}
+
+
+export { buildTree, deleteNode, insertNode, find, inOrder, levelOrder, preOrder, postOrder}
