@@ -143,12 +143,6 @@ function levelOrder(root,callback) {
     }
 }
 
-function readRoot(root, values, callback) {
-    if(typeof callback != 'function') values.push(root.data);
-    if(typeof callback == 'function') callback(root);
-    if(typeof callback != 'function') return values;
-}
-
 function inOrder(root, callback) {
     if (root == null) return root;
     if(typeof callback != 'function') {
