@@ -197,5 +197,50 @@ function postOrder(root, callback) {
     callback(root);
 }
 
+function height(root) {
+    if(root == null) return null;
+    let heightNum = 0;
+    let children = [];
 
-export { buildTree, deleteNode, insertNode, find, inOrder, levelOrder, preOrder, postOrder}
+    if (Array.isArray(root) == true) {
+        let check = root.some(n => n.left != null || n.right != null);
+        if(check == true) {
+            heightNum += 1;
+            root.forEach(n => {
+                if (n.left != null) {
+                    children.push(n.left);
+                }
+            });
+            root.forEach(n => {
+                if (n.right != null) {
+                    children.push(n.right);
+                }
+            });
+            heightNum += height(children);
+        } else {
+            return 0;
+        }
+    }
+
+    if(root.left != null || root.right != null) {
+        heightNum += 1;
+        if(root.left != null) children.push(root.left);
+        if(root.right != null) children.push(root.right);
+        heightNum += height(children);
+    }
+
+    return heightNum;
+}
+
+
+export { 
+    buildTree, 
+    deleteNode, 
+    insertNode, 
+    find, 
+    inOrder, 
+    levelOrder, 
+    preOrder, 
+    postOrder,
+    height,
+}
