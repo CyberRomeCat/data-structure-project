@@ -1,6 +1,17 @@
 import { hashmap } from "./hashmap";
 import  mergeSort  from "./mergeSort";
-import { buildTree, insertNode, find, inorder, deleteNode, levelOrder } from "./BST";
+import { 
+  buildTree, 
+  insertNode, 
+  find, 
+  inorder,
+  deleteNode, 
+  levelOrder, 
+  preOrder ,
+  inOrder,
+  postOrder,
+  height,
+} from "./BST";
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
   if (node === null) {
@@ -43,3 +54,7 @@ root = insertNode(root, 40);
 root = insertNode(root, 70);
 root = insertNode(root, 60);
 prettyPrint(root);
+console.log(inOrder(root));
+console.log(preOrder(root));
+console.log(postOrder(root));
+console.log(height(root));
