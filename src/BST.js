@@ -214,12 +214,8 @@ function height(root) {
         if(check == true) {
             heightNum += 1;
             root.forEach(n => {
-                if (n.left != null) {
-                    children.push(n.left);
-                }
-                if (n.right != null) {
-                    children.push(n.right);
-                }
+                if (n.left != null) children.push(n.left);            
+                if (n.right != null) children.push(n.right);           
             });
             heightNum += height(children);
         } else {
@@ -250,12 +246,8 @@ function depth(root, node) {
             for (let i = 0; i < root.length; i++) {
                 let n = root[i];
                 if(n.data == node) return 0;
-                if (n.left != null) {
-                    children.push(n.left);
-                }
-                if (n.right != null) {
-                    children.push(n.right);
-                }
+                if (n.left != null) children.push(n.left);            
+                if (n.right != null) children.push(n.right);
             }
             depthNum += depth(children, node);
         } else {
