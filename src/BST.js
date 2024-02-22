@@ -202,6 +202,13 @@ function height(root) {
     let heightNum = 0;
     let children = [];
 
+    if (root.left != null || root.right != null) {
+        heightNum += 1;
+        if(root.left != null) children.push(root.left);
+        if(root.right != null) children.push(root.right);
+        heightNum += height(children);
+    }
+
     if (Array.isArray(root) == true) {
         let check = root.some(n => n.left != null || n.right != null);
         if(check == true) {
@@ -222,14 +229,47 @@ function height(root) {
         }
     }
 
-    if(root.left != null || root.right != null) {
-        heightNum += 1;
+    return heightNum;
+}
+
+function depth(root, node) {
+    if(root == null) return null;
+    if(node == undefined) return 0;
+    let depthNum = 0;
+    let children = [];
+
+    if (root.left != null || root.right != null) {
+        depthNum += 1;
         if(root.left != null) children.push(root.left);
         if(root.right != null) children.push(root.right);
-        heightNum += height(children);
+        depthNum += depth(children, node);
     }
 
-    return heightNum;
+    if (Array.isArray(root) == true) {
+        let check = root.some(n => n.left != null || n.right != null);
+        if(check == true) {
+            depthNum += 1;
+            for (let i = 0; i < root.length; i++) {
+                let n = root[i];
+                if(n.data == node) return 0;
+                if (n.left != null) {
+                    children.push(n.left);
+                }
+            }
+            for (let i = 0; i < root.length; i++) {
+                let n = root[i];
+                if(n.data == node) return 0;
+                if (n.right != null) {
+                    children.push(n.right);
+                }
+            }
+            depthNum += depth(children, node);
+        } else {
+            return 0;
+        }
+    }
+
+    return depthNum;
 }
 
 
@@ -243,4 +283,5 @@ export {
     preOrder, 
     postOrder,
     height,
+    depth
 }
