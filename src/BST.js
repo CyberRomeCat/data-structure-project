@@ -246,7 +246,7 @@ function depth(root, node) {
             for (let i = 0; i < root.length; i++) {
                 let n = root[i];
                 if(n.data == node) return 0;
-                if (n.left != null) children.push(n.left);            
+                if (n.left != null) children.push(n.left);       
                 if (n.right != null) children.push(n.right);
             }
             depthNum += depth(children, node);
@@ -257,6 +257,26 @@ function depth(root, node) {
 
     return depthNum;
 }
+
+function isBalanced(root) {
+    if (root == null) return root;
+    if (root.left == null && root.right == null) return [0,0];
+     
+    let heightRoot = [0,0];
+
+    if(root.left) heightRoot[0] += 1 + isBalanced(root.left)[0];
+    if(root.right) heightRoot[1] += 1 + isBalanced(root.right)[1];
+    if(root.left == null && root.right != null ) heightRoot[0] += 1 + isBalanced(root.left)[0];
+    if(root.left != null && root.right == null ) heightRoot[1] += 1 + isBalanced(root.left)[1];
+
+    let difference = heightRoot[0] - heightRoot[1];
+    if(difference > 1 ){
+        return false;
+    }
+
+    return heightRoot;
+}
+
 
 
 export { 
@@ -269,5 +289,6 @@ export {
     preOrder, 
     postOrder,
     height,
-    depth
+    depth,
+    isBalanced
 }
