@@ -217,8 +217,6 @@ function height(root) {
                 if (n.left != null) {
                     children.push(n.left);
                 }
-            });
-            root.forEach(n => {
                 if (n.right != null) {
                     children.push(n.right);
                 }
@@ -255,10 +253,6 @@ function depth(root, node) {
                 if (n.left != null) {
                     children.push(n.left);
                 }
-            }
-            for (let i = 0; i < root.length; i++) {
-                let n = root[i];
-                if(n.data == node) return 0;
                 if (n.right != null) {
                     children.push(n.right);
                 }
