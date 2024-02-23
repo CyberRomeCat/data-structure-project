@@ -277,6 +277,12 @@ function isBalanced(root) {
     }
 }
 
+function reBalance(root) {
+    let valuesArr = postOrder(root);
+    let buildNewTree = buildTree(valuesArr);
+    return buildNewTree.makeBST();
+}
+
 export { 
     buildTree, 
     deleteNode, 
@@ -289,4 +295,5 @@ export {
     height,
     depth,
     isBalanced,
+    reBalance
 }
