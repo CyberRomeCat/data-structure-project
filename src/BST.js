@@ -270,7 +270,8 @@ function isBalanced(root) {
     if(root.right) heightRoot[1] += 1 + isBalanced(root.right)[1];
 
     let difference = heightRoot[0] - heightRoot[1];
-    if(isNaN(difference) || difference > 1){
+    
+    if(isNaN(difference) || difference > 1 || difference < -1){
         return false;
     } else {
         return heightRoot;
