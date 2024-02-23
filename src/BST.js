@@ -31,7 +31,7 @@ function buildTree(arr) {
 
     let sortedArr = cleanArr();
 
-    const makeBST = (start,end) => {
+    const makeBST = (start = 0,end = sortedArr.length) => {
         let array = sortedArr;
         if (start > end) {
             return null;
@@ -277,10 +277,6 @@ function isBalanced(root) {
     }
 }
 
-function reBalance() {
-    
-}
-
 export { 
     buildTree, 
     deleteNode, 
@@ -293,5 +289,4 @@ export {
     height,
     depth,
     isBalanced,
-    reBalance
 }
