@@ -264,14 +264,13 @@ function isBalanced(root) {
      
     let heightRoot = [0,0];
 
-    if(root.left == null && root.right != null ) heightRoot[0] += 1 + isBalanced(root.left)[0];
-    if(root.left != null && root.right == null ) heightRoot[1] += 1 + isBalanced(root.left)[1];
+    if(root.left == null && root.right != null ) heightRoot[0] += 1 + isBalanced(root.right)[1];
+    if(root.left != null && root.right == null ) heightRoot[1] += 1 + isBalanced(root.left)[0];
     if(root.left) heightRoot[0] += 1 + isBalanced(root.left)[0];
     if(root.right) heightRoot[1] += 1 + isBalanced(root.right)[1];
 
     let difference = heightRoot[0] - heightRoot[1];
-    if(difference == NaN || difference > 1){
-        console.log(false);
+    if(isNaN(difference) || difference > 1){
         return false;
     } else {
         return heightRoot;
@@ -279,7 +278,7 @@ function isBalanced(root) {
 }
 
 function reBalance() {
-
+    
 }
 
 export { 
