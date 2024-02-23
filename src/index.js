@@ -4,13 +4,15 @@ import {
   buildTree, 
   insertNode, 
   find, 
-  inorder,
   deleteNode, 
   levelOrder, 
   preOrder ,
   inOrder,
   postOrder,
   height,
+  depth,
+  isBalanced,
+  reBalance
 } from "./BST";
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -40,21 +42,33 @@ test.set('j','joll');
 test.set('k','koll');
 test.set('l','loll');
 test.set('m','aoll');
-let arr = [12,2,65,7,9];
-let n = arr.length;
-let tree = buildTree(arr);
-console.log(tree.makeBST(0,n));
-console.log(mergeSort(arr));
-prettyPrint(tree.makeBST(0,n));
-let root = null;
-root = insertNode(root, 50);
-root = insertNode(root, 30);
-root = insertNode(root, 20);
-root = insertNode(root, 40);
-root = insertNode(root, 70);
-root = insertNode(root, 60);
+
+function printAll(r) {
+  console.log(inOrder(r));
+  console.log(preOrder(r));
+  console.log(postOrder(r));
+}
+function check(root) {
+  isBalanced(root) == false ? console.log('unbalanced') : console.log('balanced');
+}
+
+let array = [54,12,8,3,1,90,32];
+let root = buildTree(array).makeBST();
+console.log(root);
 prettyPrint(root);
-console.log(inOrder(root));
-console.log(preOrder(root));
-console.log(postOrder(root));
-console.log(height(root));
+check(root);
+printAll(root)
+root = insertNode(root, 5);
+root = insertNode(root, 16);
+root = insertNode(root, 4);
+prettyPrint(root);
+check(root);
+let reBal = reBalance(root);
+printAll(reBal);
+prettyPrint(reBal)
+check(reBal);
+
+
+
+
+
