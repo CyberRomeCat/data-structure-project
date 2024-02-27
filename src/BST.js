@@ -296,5 +296,5 @@ export {
     height,
     depth,
     isBalanced,
-    reBalance
+    reBalance,
 }
