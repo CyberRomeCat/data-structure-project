@@ -7,5 +7,3 @@ Linked list is a linear collection of any data type called nodes that points to 
 A hashmap takes in a key value pair produces a hash code and stores the pair into a bucket. HashMap is one of the most used data structures in programming
 ### Binary Search Tree
 A Binary search tree is a group of nodes where you build them like a tree, with each left node being lower than the right node. 
-### Graphs
-A Graph is a collection of nodes connected by edges. Used to represent relationships between different entities
